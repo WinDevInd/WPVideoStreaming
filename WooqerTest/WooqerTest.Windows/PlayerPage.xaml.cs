@@ -1,6 +1,4 @@
-﻿using GoogleApis;
-using GoogleApiSearch;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,25 +20,30 @@ namespace WooqerTest
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class BlankPage : Page
     {
-        Search s;
-        public MainPage()
+        //private Search searchApi;
+        public BlankPage()
         {
             this.InitializeComponent();
-            s = new Search();
+            //searchApi = new Search();
             Get();
         }
 
-
         public async void Get()
         {
-            
-            var data = await s.SearchYoutubeVideo("Microsft");
-            foreach(var s1 in data)
-            {
-                var d = await YoutubeVideoGenerator.GetVideoUriAsync(s1.URL, YoutubeVideoGenerator.YouTubeQuality.QualityMedium);
-            }
+
+            //var data = await searchApi.SearchYoutubeVideo("Microsoft");
+            //foreach (var videos in data)
+            //{
+            //    string url = videos.URL + "&key=AIzaSyCUFxMevnFvsA_BwQWnBpALmKdbx2XVwgE";
+            //    var d = await YoutubeVideoGenerator.GetVideoUriAsync(url, YoutubeVideoGenerator.YouTubeQuality.Quality480P);
+            //    if (d.HasVideo)
+            //    {
+            //        this.player.Source = d.Uri;
+            //        break;
+            //    }
+            //}
         }
     }
 }

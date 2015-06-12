@@ -1,8 +1,13 @@
-﻿using System;
+﻿using GoogleApis;
+using GoogleApiSearch;
+using Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -12,6 +17,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WooqerTest.Shared;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -20,13 +26,12 @@ namespace WooqerTest
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class PlayerPage : BasePage
     {
-        public MainPage()
+        private Search searchApi;
+        public PlayerPage()
         {
             this.InitializeComponent();
-
-            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         /// <summary>
@@ -36,13 +41,26 @@ namespace WooqerTest
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // TODO: Prepare page for display here.
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                string data = e.Parameter as string;
+                YoutubeData video = JsonConvert.DeserializeObject<YoutubeData>(data);
+                EmbadeVideoInPlayer(video);
 
-            // TODO: If your application contains multiple pages, ensure that you are
-            // handling the hardware Back button by registering for the
-            // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
-            // If you are using the NavigationHelper provided by some templates,
-            // this event is handled for you.
+            }
+        }
+
+        private async Task EmbadeVideoInPlayer(YoutubeData video)
+        {
+            if (video != null)
+            {
+                this.player.Source = await Task.Run(async () =>
+                {
+                    var res = await YoutubeVideoGenerator.GetVideoUriAsync(video.URL, YoutubeVideoGenerator.YouTubeQuality.Quality480P);
+                    return res.Uri;
+                });
+
+            }
         }
     }
 }

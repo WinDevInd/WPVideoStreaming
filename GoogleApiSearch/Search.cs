@@ -1,11 +1,9 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Upload;
@@ -35,7 +33,7 @@ namespace GoogleApis
             
             var searchListRequest = youtubeService.Search.List("snippet");
             searchListRequest.Q = search;
-            searchListRequest.MaxResults = 10;
+            searchListRequest.MaxResults = 20;
 
             var searchListResponse = await searchListRequest.ExecuteAsync();
 
