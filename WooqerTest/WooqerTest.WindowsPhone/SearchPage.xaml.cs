@@ -1,10 +1,10 @@
-﻿using System;
+﻿using SharedLibrary.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -28,12 +28,12 @@ namespace WooqerTest
     public sealed partial class SearchPage : BasePage
     {
 
-        private SearchViewModel vm;
+        private SearchViewModel searchVM;
         public SearchPage()
         {
-            vm = new SearchViewModel();
-            this.DataContext = vm;
-            vm.NavigationAction = Navigate;
+            searchVM = new SearchViewModel();
+            this.DataContext = searchVM;
+            searchVM.NavigationAction = Navigate;
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
@@ -51,10 +51,6 @@ namespace WooqerTest
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-            if (e.NavigationMode == NavigationMode.New)
-            {
-
-            }
         }
 
         private void Image_Unloaded(object sender, RoutedEventArgs e)
@@ -66,9 +62,9 @@ namespace WooqerTest
         {
             if (e.Key == Windows.System.VirtualKey.Enter || e.Key == Windows.System.VirtualKey.Search)
             {
-                vm.SearchText = this.SearchBox.Text.ToString();
+                searchVM.SearchText = this.SearchBox.Text.ToString();
                 InputPane.GetForCurrentView().TryHide();
-                await vm.LoadSearchResult();
+                await searchVM.LoadSearchResult();
             }
         }
     }

@@ -15,7 +15,7 @@
             <Button Style="{StaticResource FeedbackButton}" 
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                     Command="{Binding ItemTapped}" CommandParameter="{Binding Data}" 
-                    Margin="0,0,0,48" Background="#3e3e3e">
+                    Margin="0,0,0,48" Background="{StaticResource ElementBackgroundBrush}">
                 <Grid HorizontalAlignment="Stretch" DataContext="{Binding Data}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -23,9 +23,9 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Margin="0,0,12,0"
-                           Stretch="Uniform"
-                       Source="{Binding Thumbnails.Medium}" 
+                    <Image Grid.Row="0" Margin="0,0,0,12"
+                           Stretch="Uniform" MinHeight="250"
+                       Source="{Binding Thumbnails.Medium}" Width="{Binding DataContext.Width,ElementName=VideoList}" 
                            HorizontalAlignment="Center" Unloaded="Image_Unloaded"/>
 
                     <TextBlock Grid.Column="1" Grid.Row="1" 
@@ -33,7 +33,7 @@
                                TextWrapping="WrapWholeWords"
                                TextTrimming="CharacterEllipsis"
                                FontSize="{StaticResource LargeFont}" 
-                               FontFamily="{StaticResource ButtonContetnFontFamily}"
+                               FontFamily="{StaticResource BoldFont}"
                                Margin="12,5"
                                Foreground="{StaticResource AppForegroundContentBrush}" />
 
@@ -41,8 +41,8 @@
                                TextTrimming="CharacterEllipsis"
                                Text="{Binding Description}" TextWrapping="Wrap"
                                FontSize="{StaticResource SmallFont}"
-                               Foreground="{StaticResource PhoneAccentBrush}"
-                               FontFamily="{StaticResource ButtonContetnFontFamily}"
+                               Foreground="{StaticResource AppForegroundContentBrush}"
+                               FontFamily="{StaticResource ButtonContetnFont}"
                                Margin="12,5"/>
                 </Grid>
             </Button>
@@ -54,22 +54,25 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Background="{ThemeResource PhoneAccentBrush}">
+        <StackPanel Background="{ThemeResource AppAccentBrush}">
             <TextBox x:Name="SearchBox" Text="{Binding SearchText}" 
                      PlaceholderText="Search on Youtube"
+                     Background="#f1f1f1"
                      InputScope="Search"  KeyDown="SearchBox_KeyDown" 
-                     Grid.Row="0" Padding="12" Margin="0,24,0,12"
+                     Grid.Row="0" Padding="12" Margin="12,24,12,12"
                      BorderBrush="LightGray" BorderThickness="1" 
                      Foreground="{StaticResource AppPrimaryBrush}"/>
         </StackPanel>
-        <ProgressRing Grid.RowSpan="2"
-                      Visibility="{Binding IsLoading,Converter={StaticResource BooleanToVisibilityConverter}}" 
-                      VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-        <ListView Grid.Row="1" Margin="0,0,0,0" Background="{StaticResource AppPrimaryBrush}"
+        
+        <ListView x:Name="VideoList" Grid.Row="1" Background="{StaticResource AppPrimaryBrush}"
                   ItemsSource="{Binding SearchResults}"
                   Transitions="{StaticResource DefaultListTransition}"
                   ItemContainerStyle="{StaticResource DefaultListViewItemStyle}"
                   ItemTemplate="{StaticResource SearchDataResultTemplate}">
         </ListView>
+        <ProgressRing Grid.RowSpan="2"
+                      IsActive="{Binding IsLoading}"
+                      VerticalAlignment="Center" HorizontalAlignment="Center" 
+                      Foreground="{StaticResource AppAccentBrush}"/>
     </Grid>
 </BaseType:BasePage>

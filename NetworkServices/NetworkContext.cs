@@ -11,9 +11,6 @@ namespace JISoft.NetoworkUtil
     using System.Text;
     using System.Threading;
 
-    /// <summary>
-    /// Network Context
-    /// </summary>
     public class NetworkContext
     {
         /// <summary>
