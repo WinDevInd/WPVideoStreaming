@@ -44,7 +44,7 @@
                 if (NavigationAction != null)
                 {
                     NavigationAction(JsonConvert.SerializeObject(data));
-
+                    
                 }
             }
         }
@@ -87,8 +87,7 @@
             {
                 return;
             }
-            IsLoading = true;
-            SearchResults.Clear();
+            IsLoading = true; 
             try
             {
                 var result = await search.SearchYoutubeVideo(SearchText);
