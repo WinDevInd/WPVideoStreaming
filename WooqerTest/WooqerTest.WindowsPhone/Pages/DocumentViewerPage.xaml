@@ -19,14 +19,20 @@
                    FontFamily="{StaticResource BoldFont}"
                    FontSize="{StaticResource HeaderFont}" 
                    HorizontalAlignment="Center" />
+            
         </Grid>
         <RichTextBoxAdv:SfRichTextBoxAdv x:Name="RichTextBoxDocViewer" IsReadOnly="True"
-            ManipulationMode="All" Grid.Row="1" Background="White" />
+            ManipulationMode="All" Grid.Row="1" Background="Gray" />
+        <Grid x:Name="BusyInidicator" Visibility="Collapsed" Background="#b6000000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.RowSpan="2">
+            <ProgressBar   Foreground="{StaticResource AppForegroundContentBrush}" 
+                         IsIndeterminate="True" Background="{x:Null}" VerticalAlignment="Center" Margin="0,5,0,0" RequestedTheme="Light" BorderBrush="{x:Null}"/>
+        </Grid>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar IsSticky="False">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Open File" Click="FileOpen_Clicked" Icon="OpenFile"/>
+                <AppBarButton Label="Preview File" Icon="Preview" Click="LauchExternal"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

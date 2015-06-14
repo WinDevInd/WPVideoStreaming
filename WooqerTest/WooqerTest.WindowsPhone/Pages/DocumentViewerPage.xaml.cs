@@ -29,12 +29,17 @@ namespace WooqerTest.Pages
     public sealed partial class DocumentViewerPage : BasePage
     {
         CoreApplicationView view;
+        Task<bool> loadAsync;
+        StorageFile currentFile;
         public DocumentViewerPage()
         {
             this.InitializeComponent();
+            this.Unloaded += DocumentViewerPage_Unloaded;
+            this.Loaded += DocumentViewerPage_Loaded;
             view = CoreApplication.GetCurrentView();
 
         }
+
 
         async void view_Activated(CoreApplicationView sender, Windows.ApplicationModel.Activation.IActivatedEventArgs args)
         {
@@ -44,26 +49,53 @@ namespace WooqerTest.Pages
             {
                 if (fileOpenArgs.Files.Count == 0) return;
 
-
+                BusyInidicator.Visibility = Visibility.Visible;
                 view.Activated -= view_Activated;
                 var docFile = fileOpenArgs.Files[0];
+                currentFile = docFile;
                 await this.ViewDocument(docFile);
 
             }
         }
 
         /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
+        /// Invoke when current view gets loaded
         /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        /// <param name="sender">Page</param>
+        /// <param name="e"></param>
+        async void DocumentViewerPage_Loaded(object sender, RoutedEventArgs e)
         {
-            Task.Run(async () =>
+            BusyInidicator.Visibility = Visibility.Visible;
+            var docFile = await this.PickFromStorage();
+            currentFile = docFile;
+            await ViewDocument(docFile);
+        }
+
+        /// <summary>
+        /// unloading of current view
+        /// </summary>
+        /// <param name="sender">Page</param>
+        /// <param name="e"></param>
+        private async void DocumentViewerPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (loadAsync != null && !loadAsync.IsCompleted && !loadAsync.IsFaulted)
             {
-                var docFile = await this.PickFromStorage();
-                ViewDocument(docFile);
-            });
+                await loadAsync;
+            }
+            try
+            {
+                this.RichTextBoxDocViewer.Dispose();
+                this.RichTextBoxDocViewer = null;
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                this.Unloaded -= DocumentViewerPage_Unloaded;
+            }
+
         }
 
         /// <summary>
@@ -74,17 +106,20 @@ namespace WooqerTest.Pages
         {
             try
             {
-                await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                if (docFile != null)
                 {
-                    if (docFile != null)
-                    {
-                        this.RichTextBoxDocViewer.LoadAsync(docFile);
-                    }
-                });
+                    loadAsync = this.RichTextBoxDocViewer.LoadAsync(docFile, new System.Threading.CancellationToken());
+                    await loadAsync;
+                }
+
             }
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Error in loading content " + e.Message);
+            }
+            finally
+            {
+                BusyInidicator.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -111,6 +146,14 @@ namespace WooqerTest.Pages
         private void FileOpen_Clicked(object sender, RoutedEventArgs e)
         {
             PickFromPhone();
+        }
+
+        private async void LauchExternal(object sender, RoutedEventArgs e)
+        {
+            if (currentFile != null && !string.IsNullOrWhiteSpace(currentFile.Path))
+            {
+                await Windows.System.Launcher.LaunchFileAsync(currentFile);
+            }
         }
     }
 }
