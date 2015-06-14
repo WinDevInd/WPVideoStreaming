@@ -19,7 +19,7 @@
                 //// Init all phone setters here
                 SharedLibrary.Essentials.Instance = new SharedLibrary.Essentials(new PhoneExclusives.PhoneSetters());
 #elif WINDOWS_APP
-                //// init all Windows RT setters here
+                SharedLibrary.Essentials.Instance = new SharedLibrary.Essentials(new WindowsExclusive.WindowsSetters());
 
 #endif
             }

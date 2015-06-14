@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WooqerTest.BlankPage"
+    x:Class="WooqerTest.PlayerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WooqerTest"
@@ -9,6 +9,36 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <mmppf:MediaPlayer x:Name="player"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Background="{ThemeResource AppAccentBrush}">
+                <TextBox x:Name="SearchBox" Text="{Binding SearchText}" 
+                     PlaceholderText="Search on Youtube"
+                     Background="#f1f1f1"
+                     InputScope="Search"  KeyDown="SearchBox_KeyDown" 
+                     Grid.Row="0" Padding="12" Margin="12,24,12,12"
+                     BorderBrush="LightGray" BorderThickness="1" 
+                     Foreground="{StaticResource AppPrimaryBrush}"/>
+            </StackPanel>
+
+            <ListView x:Name="VideoList" Grid.Row="1" Background="{StaticResource AppPrimaryBrush}"
+                  ItemsSource="{Binding SearchResults}"
+                  Transitions="{StaticResource DefaultListTransition}"
+                  ItemContainerStyle="{StaticResource DefaultListViewItemStyle}"
+                  ItemTemplate="{StaticResource SearchDataResultTemplate}">
+            </ListView>
+            <ProgressRing Grid.RowSpan="2"
+                      IsActive="{Binding IsLoading}"
+                      VerticalAlignment="Center" HorizontalAlignment="Center" 
+                      Foreground="{StaticResource AppAccentBrush}"/>
+        </Grid>
+        <mmppf:MediaPlayer x:Name="player" Grid.Column="1"/>
     </Grid>
 </Page>

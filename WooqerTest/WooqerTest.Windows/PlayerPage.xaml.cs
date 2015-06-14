@@ -1,8 +1,13 @@
-﻿using System;
+﻿using GoogleApiSearch;
+using Models;
+using Newtonsoft.Json;
+using SharedLibrary.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -20,30 +25,45 @@ namespace WooqerTest
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class BlankPage : Page
+    public sealed partial class PlayerPage : Page
     {
-        //private Search searchApi;
-        public BlankPage()
+        private SearchViewModel searchVM;
+        public PlayerPage()
         {
+            searchVM = new SearchViewModel();
             this.InitializeComponent();
-            //searchApi = new Search();
-            Get();
+            this.DataContext = searchVM;
+            searchVM.NavigationAction = LoadVideo;
+            
         }
 
-        public async void Get()
+        private void LoadVideo(string data)
         {
+            YoutubeData video =  JsonConvert.DeserializeObject<YoutubeData>(data);
+            EmbadeVideoInPlayer(video);
+        }
 
-            //var data = await searchApi.SearchYoutubeVideo("Microsoft");
-            //foreach (var videos in data)
-            //{
-            //    string url = videos.URL + "&key=AIzaSyCUFxMevnFvsA_BwQWnBpALmKdbx2XVwgE";
-            //    var d = await YoutubeVideoGenerator.GetVideoUriAsync(url, YoutubeVideoGenerator.YouTubeQuality.Quality480P);
-            //    if (d.HasVideo)
-            //    {
-            //        this.player.Source = d.Uri;
-            //        break;
-            //    }
-            //}
+        private async Task EmbadeVideoInPlayer(YoutubeData video)
+        {
+            
+            if (video != null)
+            {
+                this.player.Stop();
+                this.player.Source = await Task.Run(async () =>
+                {
+                    var res = await YoutubeVideoGenerator.GetVideoUriAsync(video.URL, YoutubeVideoGenerator.YouTubeQuality.Quality480P);
+                    return res.Uri;
+                });
+
+            }
+        }
+        private async void SearchBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter || e.Key == Windows.System.VirtualKey.Search)
+            {
+                searchVM.SearchText = this.SearchBox.Text.ToString();
+                await searchVM.LoadSearchResult();
+            }
         }
     }
 }

@@ -10,44 +10,6 @@
     BaseType:BasePage.SupportedOrientations="Portrait"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Resources>
-        <DataTemplate x:Key="SearchDataResultTemplate">
-            <Button Style="{StaticResource FeedbackButton}" 
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                    Command="{Binding ItemTapped}" CommandParameter="{Binding Data}" 
-                    Margin="0,0,0,48" Background="{StaticResource ElementBackgroundBrush}">
-                <Grid HorizontalAlignment="Stretch" DataContext="{Binding Data}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="0" Margin="0,0,0,12"
-                           Stretch="Uniform" MinHeight="250"
-                       Source="{Binding Thumbnails.Medium}" Width="{Binding DataContext.Width,ElementName=VideoList}" 
-                           HorizontalAlignment="Center" Unloaded="Image_Unloaded"/>
-
-                    <TextBlock Grid.Column="1" Grid.Row="1" 
-                               Text="{Binding Title}"
-                               TextWrapping="WrapWholeWords"
-                               TextTrimming="CharacterEllipsis"
-                               FontSize="{StaticResource LargeFont}" 
-                               FontFamily="{StaticResource BoldFont}"
-                               Margin="12,5"
-                               Foreground="{StaticResource AppForegroundContentBrush}" />
-
-                    <TextBlock Grid.Column="1" Grid.Row="2"
-                               TextTrimming="CharacterEllipsis"
-                               Text="{Binding Description}" TextWrapping="Wrap"
-                               FontSize="{StaticResource SmallFont}"
-                               Foreground="{StaticResource AppForegroundContentBrush}"
-                               FontFamily="{StaticResource ButtonContetnFont}"
-                               Margin="12,5"/>
-                </Grid>
-            </Button>
-        </DataTemplate>
-    </Page.Resources>
 
     <Grid Background="{StaticResource AppPrimaryBrush}">
         <Grid.RowDefinitions>

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using WooqerTest.Shared;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -53,7 +54,7 @@ namespace WooqerTest
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-
+            StartupManager.BootupApplication(e.PreviousExecutionState);
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -95,7 +96,7 @@ namespace WooqerTest
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(BlankPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(PlayerPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
