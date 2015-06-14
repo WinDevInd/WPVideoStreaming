@@ -17,7 +17,7 @@
             {
 #if WINDOWS_PHONE_APP
                 //// Init all phone setters here
-                SharedLibrary.Essentials.Instance = new SharedLibrary.Essentials(new PhoneExclusives.PhoneSetters());
+                SharedLibrary.Essentials.Instance = new SharedLibrary.Essentials(new PhoneExclusives.Common.PhoneSetters());
 #elif WINDOWS_APP
                 SharedLibrary.Essentials.Instance = new SharedLibrary.Essentials(new WindowsExclusive.WindowsSetters());
 

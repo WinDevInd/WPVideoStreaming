@@ -95,7 +95,7 @@
                 <Image Grid.Row="0" Margin="0,0,0,12"
                            Stretch="Uniform" MinHeight="250"
                        Source="{Binding Thumbnails.Medium}" 
-                           HorizontalAlignment="Center" Unloaded="Image_Unloaded"/>
+                           HorizontalAlignment="Center"/>
 
                 <TextBlock Grid.Column="1" Grid.Row="1" 
                                Text="{Binding Title}"

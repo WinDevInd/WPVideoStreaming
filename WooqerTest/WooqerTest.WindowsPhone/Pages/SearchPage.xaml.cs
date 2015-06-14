@@ -18,8 +18,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WooqerTest.Shared;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace WooqerTest.Pages
 {
     /// <summary>
@@ -35,7 +33,18 @@ namespace WooqerTest.Pages
             this.DataContext = searchVM;
             searchVM.NavigationAction = Navigate;
             this.InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Enabled;
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                this.searchVM.SearchResults.Clear();
+                this.searchVM.SearchText = "";
+            }
+        }
+
 
         private void Navigate(string pageparams)
         {
@@ -50,11 +59,6 @@ namespace WooqerTest.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-        }
-
-        private void Image_Unloaded(object sender, RoutedEventArgs e)
-        {
-           
         }
 
         private async void SearchBox_KeyDown(object sender, KeyRoutedEventArgs e)
