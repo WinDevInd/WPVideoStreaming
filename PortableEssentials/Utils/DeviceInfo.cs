@@ -3,7 +3,7 @@
 // Copyright (c) JISoft.  All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------------------
-namespace PhoneExclusives.Utils
+namespace PortableEssentials.Utils
 {
     using SharedLibrary.Interface;
     using System;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneExclusives.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -105,26 +106,13 @@ namespace WooqerTest.Pages
 
         private async Task<StorageFile> PickFromStorage()
         {
-            StorageFile docFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(
-                    new Uri("ms-appx:///Docs/resume.docx", UriKind.RelativeOrAbsolute));
+            StorageFile docFile = await SharedLibrary.Essentials.Instance.StorageManager.GetFileFromApplicationFolder("Docs/resume.docx") as StorageFile;
             return docFile;
-        }
-
-        private async Task<StorageFile> PickFromDevice()
-        {
-            var filePicker = new FileOpenPicker();
-            filePicker.FileTypeFilter.Add(".doc");
-            filePicker.FileTypeFilter.Add(".docx");
-            filePicker.ViewMode = PickerViewMode.Thumbnail;
-            filePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            filePicker.SettingsIdentifier = "Wooqer DocViewer";
-            filePicker.CommitButtonText = "Open";
-            return await filePicker.PickSingleFileAsync();
         }
 
         private async void FileOpen_Clicked(object sender, RoutedEventArgs e)
         {
-            var docFile = await PickFromDevice();
+            var docFile = await PickerUtil.PickFileFromDevice(new string[] { ".doc", ".docx" });
             ViewDocument(docFile);
         }
 

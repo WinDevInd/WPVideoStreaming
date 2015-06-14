@@ -1,4 +1,6 @@
-﻿using Syncfusion.Pdf.Parsing;
+﻿using PhoneExclusives.Common;
+using PortableEssentials.Utils;
+using Syncfusion.Pdf.Parsing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,28 +43,15 @@ namespace WooqerTest.Pages
             {
                 await loadAsync;
             }
-            this.PDFView.ItemsSource = null;
+            this.PDFView.Unload();
             this.PDFView = null;
         }
 
         async void PDFViewer_Loaded(object sender, RoutedEventArgs e)
         {
             BusyInidicator.Visibility = Visibility.Visible;
-            var docFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(
-                   new Uri("ms-appx:///Docs/resume.pdf", UriKind.RelativeOrAbsolute));
-
-            LoadPdf(docFile);
-        }
-
-        private async Task<StorageFile> PickFromDevice()
-        {
-            var filePicker = new FileOpenPicker();
-            filePicker.FileTypeFilter.Add(".pdf");
-            filePicker.ViewMode = PickerViewMode.Thumbnail;
-            filePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            filePicker.SettingsIdentifier = "Wooqer DocViewer";
-            filePicker.CommitButtonText = "Open";
-            return await filePicker.PickSingleFileAsync();
+            var docFile = await SharedLibrary.Essentials.Instance.StorageManager.GetFileFromApplicationFolder("Docs/resume.pdf");
+            LoadPdf(docFile as StorageFile);
         }
 
         private async Task LoadPdf(StorageFile docFile)
@@ -85,14 +74,13 @@ namespace WooqerTest.Pages
             {
                 BusyInidicator.Visibility = Visibility.Collapsed;
             }
-
         }
 
 
         private async void FileOpen_Clicked(object sender, RoutedEventArgs e)
         {
             BusyInidicator.Visibility = Visibility.Visible;
-            var docFile = await PickFromDevice();
+            var docFile = await PickerUtil.PickFileFromDevice(new string[] { ".pdf" });
             LoadPdf(docFile);
         }
 

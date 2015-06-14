@@ -176,6 +176,10 @@
       <Project>{663fa9e3-1fa4-47a7-8058-e262a834882e}</Project>
       <Name>JISoft.NetworkUtil</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PortableEssentials\PortableEssentials.csproj">
+      <Project>{68ff6f13-54c4-4794-95c5-0610f6a0fa28}</Project>
+      <Name>PortableEssentials</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\SharedLibrary\SharedLibrary.csproj">
       <Project>{220d20bf-b6ac-4892-bc2e-af7781626180}</Project>
       <Name>SharedLibrary</Name>

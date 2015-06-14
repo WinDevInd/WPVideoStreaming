@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SharedLibrary.Interface
 {
-    public interface IEssentialsSetter
+    public interface IStorageManager
     {
-        IDeviceInfo DeviceInfoSetters();
-        IDispatcher SetUIDispatcher();
-        IStorageManager SetUpStorageManager();
+        Task<object> GetFileFromApplicationFolder(string path);
     }
 }
