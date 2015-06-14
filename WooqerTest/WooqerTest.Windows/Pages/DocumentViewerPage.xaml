@@ -28,6 +28,14 @@
                          IsIndeterminate="True" Background="{x:Null}" VerticalAlignment="Center" Margin="0,5,0,0" RequestedTheme="Light" BorderBrush="{x:Null}"/>
         </Grid>
     </Grid>
+
+    <Page.TopAppBar>
+        <CommandBar HorizontalContentAlignment="Left" HorizontalAlignment="Left">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Tapped="BackTapped" Icon="Back" Label="Back" HorizontalAlignment="Left"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.TopAppBar>
     <Page.BottomAppBar>
         <CommandBar IsSticky="False">
             <CommandBar.PrimaryCommands>

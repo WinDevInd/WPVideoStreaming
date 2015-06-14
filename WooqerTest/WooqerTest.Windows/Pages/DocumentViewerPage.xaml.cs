@@ -135,5 +135,13 @@ namespace WooqerTest.Pages
                 await Windows.System.Launcher.LaunchFileAsync(currentFile);
             }
         }
+
+        private void BackTapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (this.Frame.CanGoBack)
+            {
+                this.Frame.GoBack();
+            }
+        }
     }
 }
