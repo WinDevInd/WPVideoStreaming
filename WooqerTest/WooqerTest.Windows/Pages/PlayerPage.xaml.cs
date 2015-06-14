@@ -67,5 +67,13 @@ namespace WooqerTest
                 await searchVM.LoadSearchResult();
             }
         }
+
+        private void BackTapped(object sender, TappedRoutedEventArgs e)
+        {
+            if(this.Frame.CanGoBack)
+            {
+                this.Frame.GoBack();
+            }
+        }
     }
 }

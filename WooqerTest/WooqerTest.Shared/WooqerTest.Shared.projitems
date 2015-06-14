@@ -23,5 +23,6 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Docs\resume.docx" />
     <Content Include="$(MSBuildThisFileDirectory)Docs\resume.pdf" />
+    <Content Include="$(MSBuildThisFileDirectory)Themes\BrandLogo.png" />
   </ItemGroup>
 </Project>
