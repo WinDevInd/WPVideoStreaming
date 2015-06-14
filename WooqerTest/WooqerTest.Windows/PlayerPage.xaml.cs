@@ -49,11 +49,13 @@ namespace WooqerTest
             if (video != null)
             {
                 this.player.Stop();
+                this.player.Source = null;
                 this.player.Source = await Task.Run(async () =>
                 {
                     var res = await YoutubeVideoGenerator.GetVideoUriAsync(video.URL, YoutubeVideoGenerator.YouTubeQuality.Quality480P);
                     return res.Uri;
                 });
+                this.player.Play();
 
             }
         }
