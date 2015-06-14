@@ -20,4 +20,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Docs\resume.docx" />
+    <Content Include="$(MSBuildThisFileDirectory)Docs\resume.pdf" />
+  </ItemGroup>
 </Project>

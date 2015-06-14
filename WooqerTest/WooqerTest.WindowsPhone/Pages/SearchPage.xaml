@@ -1,22 +1,21 @@
 ﻿<BaseType:BasePage
     xmlns:BaseType="using:WooqerTest.Shared" 
-    x:Class="WooqerTest.SearchPage"
+    x:Class="WooqerTest.Pages.SearchPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WooqerTest"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    BaseType:BasePage.SupportedOrientations="Portrait"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    BaseType:BasePage.SupportedOrientations="Portrait">
 
     <Grid Background="{StaticResource AppPrimaryBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Background="{ThemeResource AppAccentBrush}">
+        <Grid Background="{ThemeResource AppAccentBrush}">
             <TextBox x:Name="SearchBox" Text="{Binding SearchText}" 
                      PlaceholderText="Search on Youtube"
                      Background="#f1f1f1"
@@ -24,16 +23,16 @@
                      Grid.Row="0" Padding="12" Margin="12,24,12,12"
                      BorderBrush="LightGray" BorderThickness="1" 
                      Foreground="{StaticResource AppPrimaryBrush}"/>
-        </StackPanel>
+        </Grid>
         
         <ListView x:Name="VideoList" Grid.Row="1" Background="{StaticResource AppPrimaryBrush}"
                   ItemsSource="{Binding SearchResults}"
-                  Transitions="{StaticResource DefaultListTransition}"
                   ItemContainerStyle="{StaticResource DefaultListViewItemStyle}"
                   ItemTemplate="{StaticResource SearchDataResultTemplate}">
         </ListView>
         <ProgressRing Grid.RowSpan="2"
                       IsActive="{Binding IsLoading}"
+                      Background="{StaticResource AppPrimaryBrush}"
                       VerticalAlignment="Center" HorizontalAlignment="Center" 
                       Foreground="{StaticResource AppAccentBrush}"/>
     </Grid>

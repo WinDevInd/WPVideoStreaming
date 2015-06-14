@@ -1,16 +1,15 @@
 ﻿<BaseType:BasePage
     xmlns:BaseType="using:WooqerTest.Shared" 
-    x:Class="WooqerTest.PlayerPage"
+    x:Class="WooqerTest.Pages.PDFViewerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WooqerTest"
+    xmlns:local="using:WooqerTest.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:mmppf="using:Microsoft.PlayerFramework"
-    BaseType:BasePage.SupportedOrientations="Landscape,LandscapeFlipped"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="{StaticResource  AppPrimaryBrush}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <mmppf:MediaPlayer x:Name="player"/>
+    <Grid>
+
     </Grid>
 </BaseType:BasePage>

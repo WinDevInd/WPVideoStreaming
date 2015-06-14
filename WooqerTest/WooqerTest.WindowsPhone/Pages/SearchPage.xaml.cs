@@ -20,7 +20,7 @@ using WooqerTest.Shared;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace WooqerTest
+namespace WooqerTest.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -35,7 +35,6 @@ namespace WooqerTest
             this.DataContext = searchVM;
             searchVM.NavigationAction = Navigate;
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         private void Navigate(string pageparams)

@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using WooqerTest.Pages;
 using WooqerTest.Shared;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
@@ -104,7 +105,7 @@ namespace WooqerTest
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(SearchPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(StartPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
