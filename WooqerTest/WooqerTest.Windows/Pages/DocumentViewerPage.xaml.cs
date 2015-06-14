@@ -110,7 +110,7 @@ namespace WooqerTest.Pages
             return docFile;
         }
 
-        private async Task<StorageFile> PickFromPhone()
+        private async Task<StorageFile> PickFromDevice()
         {
             var filePicker = new FileOpenPicker();
             filePicker.FileTypeFilter.Add(".doc");
@@ -124,7 +124,7 @@ namespace WooqerTest.Pages
 
         private async void FileOpen_Clicked(object sender, RoutedEventArgs e)
         {
-            var docFile = await PickFromPhone();
+            var docFile = await PickFromDevice();
             ViewDocument(docFile);
         }
 

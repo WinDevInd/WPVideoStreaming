@@ -110,6 +110,9 @@
     <Compile Include="Pages\DocumentViewerPage.xaml.cs">
       <DependentUpon>DocumentViewerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PDFViewer.xaml.cs">
+      <DependentUpon>PDFViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
@@ -135,8 +138,8 @@
     <SDKReference Include="Microsoft.PlayerFramework.Xaml, Version=2.0.0.0">
       <Name>Microsoft Player Framework</Name>
     </SDKReference>
-    <SDKReference Include="Syncfusion 8.1 controls for Universal XAML, Version=13.1.0.21">
-      <Name>Syncfusion 8.1 controls for Universal XAML</Name>
+    <SDKReference Include="Syncfusion 8.1 controls for WinRT XAML, Version=13.1.0.21">
+      <Name>Syncfusion 8.1 controls for WinRT XAML</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +149,10 @@
     <Page Include="Pages\DocumentViewerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PDFViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\StartPage.xaml">
       <Generator>MSBuild:Compile</Generator>

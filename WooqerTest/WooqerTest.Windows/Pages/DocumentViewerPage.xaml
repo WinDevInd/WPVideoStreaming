@@ -1,4 +1,5 @@
-﻿<BaseType:BasePage xmlns:RichTextBoxAdv="using:Syncfusion.UI.Xaml.RichTextBoxAdv" 
+﻿<BaseType:BasePage 
+    xmlns:RichTextBoxAdv="using:Syncfusion.UI.Xaml.RichTextBoxAdv" 
     xmlns:BaseType="using:WooqerTest.Shared" 
     x:Class="WooqerTest.Pages.DocumentViewerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

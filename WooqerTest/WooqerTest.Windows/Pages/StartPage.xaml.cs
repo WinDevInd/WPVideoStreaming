@@ -54,7 +54,7 @@ namespace WooqerTest.Pages
                         navigationPageType = typeof(DocumentViewerPage);
                         break;
                     case "PDF":
-                        navigationPageType = typeof(DocumentViewerPage);
+                        navigationPageType = typeof(PDFViewer);
                         break;
                 }
                 if(navigationPageType!=null)
