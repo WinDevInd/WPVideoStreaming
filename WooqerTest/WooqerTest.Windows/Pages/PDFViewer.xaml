@@ -1,0 +1,46 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WooqerTest.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:PdfViewer="using:Syncfusion.Windows.PdfViewer"
+    x:Class="WooqerTest.Pages.PDFViewer"
+    mc:Ignorable="d">
+
+    <Page.TopAppBar>
+        <CommandBar HorizontalContentAlignment="Left" HorizontalAlignment="Left">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Tapped="BackTapped" Icon="Back" Label="Back" HorizontalAlignment="Left"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.TopAppBar>
+    <Page.BottomAppBar>
+        <CommandBar IsSticky="False">
+            <AppBarButton Label="Open File" Click="FileOpen_Clicked" Icon="OpenFile"/>
+            <AppBarButton Label="Preview File" Icon="Preview" Click="LauchExternal"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
+    <Grid Background="{StaticResource AppForegroundContentBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Background="{StaticResource AppAccentBrush}">
+            <TextBlock Text="PDF Viewer" Margin="12,24,12,12"
+				FontFamily="{StaticResource BoldFont}"
+				FontSize="{StaticResource HeaderFont}" 
+				HorizontalAlignment="Center" />
+
+        </Grid>
+        <PdfViewer:SfPdfViewerControl x:Name="PDFView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"/>
+        <Grid x:Name="BusyInidicator" Visibility="Collapsed" Background="#b6000000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.RowSpan="2">
+            <ProgressBar   Foreground="{StaticResource AppForegroundContentBrush}" 
+				IsIndeterminate="True" Background="{x:Null}" VerticalAlignment="Center" Margin="0,5,0,0" RequestedTheme="Light" BorderBrush="{x:Null}"/>
+        </Grid>
+        
+    </Grid>
+
+</Page>
