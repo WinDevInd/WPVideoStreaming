@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="fed85f39-b68e-4dc0-be64-614472c281c1" Publisher="CN=jay.k" Version="1.0.0.0" />
+  <Identity Name="fed85f39-b68e-4dc0-be64-614472c281c1" Publisher="CN=jay.k" Version="1.0.0.2" />
   <mp:PhoneIdentity PhoneProductId="fed85f39-b68e-4dc0-be64-614472c281c1" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>WooqerTest.WindowsPhone</DisplayName>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WooqerTest.WindowsPhone.App">
-      <m3:VisualElements DisplayName="WooqerTest" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="WooqerTest.WindowsPhone" ForegroundText="light" BackgroundColor="transparent">
+      <m3:VisualElements DisplayName="WooqerTest" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="WooqerTest.WindowsPhone" ForegroundText="light" BackgroundColor="#1d1d1d">
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#1d1d1d" />
