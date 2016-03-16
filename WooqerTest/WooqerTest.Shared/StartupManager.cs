@@ -20,7 +20,8 @@
                 SharedLibrary.Essentials.Instance = new SharedLibrary.Essentials(new PhoneExclusives.Common.PhoneSetters());
 #elif WINDOWS_APP
                 SharedLibrary.Essentials.Instance = new SharedLibrary.Essentials(new WindowsExclusive.WindowsSetters());
-
+#elif WINDOWS_UWP
+                SharedLibrary.Essentials.Instance = new SharedLibrary.Essentials(new WindowsExclusive.WindowsSetters());
 #endif
             }
         }
